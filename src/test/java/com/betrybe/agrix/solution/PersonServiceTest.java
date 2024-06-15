@@ -7,7 +7,6 @@ import static org.mockito.ArgumentMatchers.eq;
 
 import com.betrybe.agrix.entity.Person;
 import com.betrybe.agrix.repository.PersonRepository;
-import com.betrybe.agrix.security.Role;
 import com.betrybe.agrix.service.PersonService;
 import com.betrybe.agrix.service.exception.PersonNotFoundException;
 import java.util.Optional;
@@ -36,7 +35,7 @@ public class PersonServiceTest {
     person.setId(123L);
     person.setUsername("mangusto");
     person.setPassword("123456");
-    person.setRole(Role.USER);
+    person.setRole("USER");
 
     Mockito.when(personRepository.findById(eq(123L)))
         .thenReturn(Optional.of(person));
@@ -58,7 +57,7 @@ public class PersonServiceTest {
     person.setId(123L);
     person.setUsername("mangusto");
     person.setPassword("123456");
-    person.setRole(Role.USER);
+    person.setRole("USER");
 
     Mockito.when(personRepository.findByUsername(eq("mangusto")))
         .thenReturn(Optional.of(person));
@@ -102,7 +101,7 @@ public class PersonServiceTest {
     Person person = new Person();
     person.setUsername("mangusto");
     person.setPassword("123456");
-    person.setRole(Role.USER);
+    person.setRole("USER");
 
     Person personToBeReturned = new Person();
     personToBeReturned.setId(123L);
