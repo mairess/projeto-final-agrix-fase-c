@@ -3,7 +3,6 @@ package com.betrybe.agrix.service;
 import com.betrybe.agrix.entity.Person;
 import com.betrybe.agrix.repository.PersonRepository;
 import com.betrybe.agrix.service.exception.PersonNotFoundException;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,26 +24,16 @@ public class PersonService {
    * Returns a person for a given ID.
    */
   public Person getPersonById(Long id) throws PersonNotFoundException {
-    Optional<Person> person = personRepository.findById(id);
-
-    if (person.isEmpty()) {
-      throw new PersonNotFoundException();
-    }
-
-    return person.get();
+    return personRepository.findById(id)
+        .orElseThrow(PersonNotFoundException::new);
   }
 
   /**
    * Returns a person for a given username.
    */
   public Person getPersonByUsername(String username) throws PersonNotFoundException {
-    Optional<Person> person = personRepository.findByUsername(username);
-
-    if (person.isEmpty()) {
-      throw new PersonNotFoundException();
-    }
-
-    return person.get();
+    return personRepository.findByUsername(username)
+        .orElseThrow(PersonNotFoundException::new);
   }
 
   /**
