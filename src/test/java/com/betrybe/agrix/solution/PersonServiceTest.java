@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 
-import com.betrybe.agrix.ebytr.staff.entity.Person;
-import com.betrybe.agrix.ebytr.staff.exception.PersonNotFoundException;
-import com.betrybe.agrix.ebytr.staff.repository.PersonRepository;
-import com.betrybe.agrix.ebytr.staff.security.Role;
-import com.betrybe.agrix.ebytr.staff.service.PersonService;
+import com.betrybe.agrix.entity.Person;
+import com.betrybe.agrix.repository.PersonRepository;
+import com.betrybe.agrix.security.Role;
+import com.betrybe.agrix.service.PersonService;
+import com.betrybe.agrix.service.exception.PersonNotFoundException;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -31,7 +31,7 @@ public class PersonServiceTest {
 
   @Test
   @Description("Gets a person by personID.")
-  public void testGetPersonById() {
+  public void testGetPersonById() throws PersonNotFoundException {
     Person person = new Person();
     person.setId(123L);
     person.setUsername("mangusto");
@@ -53,7 +53,7 @@ public class PersonServiceTest {
 
   @Test
   @Description("Gets a person by username.")
-  public void testGetPersonByUsername() {
+  public void testGetPersonByUsername() throws PersonNotFoundException {
     Person person = new Person();
     person.setId(123L);
     person.setUsername("mangusto");
@@ -80,7 +80,8 @@ public class PersonServiceTest {
     Mockito.when(personRepository.findByUsername(any())).
         thenReturn(Optional.empty());
 
-    assertThrows(PersonNotFoundException.class, () -> personService.getPersonByUsername("notExistingUsername"));
+    assertThrows(PersonNotFoundException.class,
+        () -> personService.getPersonByUsername("notExistingUsername"));
     Mockito.verify(personRepository).findByUsername(eq("notExistingUsername"));
   }
 
@@ -112,7 +113,7 @@ public class PersonServiceTest {
     Mockito.when(personRepository.save(any()))
         .thenReturn(personToBeReturned);
 
-   Person savedPerson = personService.create(person);
+    Person savedPerson = personService.create(person);
 
     assertEquals(123L, savedPerson.getId());
     assertEquals(personToBeReturned.getUsername(), savedPerson.getUsername());
