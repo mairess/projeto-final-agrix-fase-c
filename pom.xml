@@ -124,6 +124,14 @@
 
   <dependencies>
 
+    <!-- JWT -->
+
+    <dependency>
+      <artifactId>java-jwt</artifactId>
+      <groupId>com.auth0</groupId>
+      <version>4.4.0</version>
+    </dependency>
+
     <!-- Database -->
 
     <dependency>
@@ -154,10 +162,10 @@
       <artifactId>spring-boot-starter-actuator</artifactId>
       <groupId>org.springframework.boot</groupId>
     </dependency>
-    <!--    <dependency>-->
-    <!--      <artifactId>spring-boot-starter-security</artifactId>-->
-    <!--      <groupId>org.springframework.boot</groupId>-->
-    <!--    </dependency>-->
+    <dependency>
+      <artifactId>spring-boot-starter-security</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
     <dependency>
       <artifactId>spring-boot-starter</artifactId>
       <groupId>org.springframework.boot</groupId>
