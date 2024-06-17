@@ -3,6 +3,10 @@ package com.betrybe.agrix.controller;
 import com.betrybe.agrix.controller.dto.AuthDto;
 import com.betrybe.agrix.controller.dto.TokenDto;
 import com.betrybe.agrix.service.TokenService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -41,6 +45,11 @@ public class AuthController {
    * @return the token dto
    */
   @PostMapping("/login")
+  @Operation(summary = "Generates token", description = "Returns a JWT.")
+  @ApiResponse(
+      responseCode = "200",
+      description = "The token",
+      content = @Content(schema = @Schema(implementation = TokenDto.class)))
   public TokenDto login(@RequestBody AuthDto authDto) {
     UsernamePasswordAuthenticationToken usernamePassword =
         new UsernamePasswordAuthenticationToken(authDto.username(), authDto.password());

@@ -3,6 +3,10 @@ package com.betrybe.agrix.controller;
 import com.betrybe.agrix.controller.dto.PersonCreationDto;
 import com.betrybe.agrix.controller.dto.PersonDto;
 import com.betrybe.agrix.service.PersonService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +42,11 @@ public class PersonController {
    */
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
+  @Operation(summary = "Creates a person", description = "Cretes new user/person")
+  @ApiResponse(
+      responseCode = "201",
+      description = "Created Person",
+      content = @Content(schema = @Schema(implementation = PersonDto.class)))
   public PersonDto createPerson(@RequestBody PersonCreationDto personCreationDto) {
     return PersonDto.fromEntity(
         personService.create(personCreationDto.toEntity())
