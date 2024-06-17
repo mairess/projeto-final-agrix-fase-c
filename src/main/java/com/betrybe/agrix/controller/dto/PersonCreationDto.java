@@ -1,11 +1,12 @@
 package com.betrybe.agrix.controller.dto;
 
 import com.betrybe.agrix.entity.Person;
+import com.betrybe.agrix.security.Role;
 
 /**
  * The type Person creation dto.
  */
-public record PersonCreationDto(String username, String password, String role) {
+public record PersonCreationDto(String username, String password, Role role) {
 
   /**
    * To entity person.

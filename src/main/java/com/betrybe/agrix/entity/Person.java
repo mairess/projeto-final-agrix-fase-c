@@ -1,6 +1,7 @@
 package com.betrybe.agrix.entity;
 
 
+import com.betrybe.agrix.security.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class Person implements UserDetails {
 
   private String password;
 
-  private String role;
+  private Role role;
 
   /**
    * Instantiates a new Person.
@@ -45,7 +46,7 @@ public class Person implements UserDetails {
    * @param password the password
    * @param role     the role
    */
-  public Person(Long id, String username, String password, String role) {
+  public Person(Long id, String username, String password, Role role) {
     this.id = id;
     this.username = username;
     this.password = password;
@@ -111,7 +112,7 @@ public class Person implements UserDetails {
    *
    * @return the role
    */
-  public String getRole() {
+  public Role getRole() {
     return role;
   }
 
@@ -120,7 +121,7 @@ public class Person implements UserDetails {
    *
    * @param role the role
    */
-  public void setRole(String role) {
+  public void setRole(Role role) {
     this.role = role;
   }
 
@@ -140,7 +141,7 @@ public class Person implements UserDetails {
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return List.of(new SimpleGrantedAuthority(role));
+    return List.of(new SimpleGrantedAuthority(role.getName()));
   }
 
   @Override
