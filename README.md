@@ -1,4 +1,4 @@
-# <p align="center">Projeto Final Agrix Fase B</p>
+# <p align="center">Projeto Final Agrix Fase C</p>
 
 ## Contexto
 
