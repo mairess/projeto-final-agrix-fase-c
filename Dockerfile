@@ -1,18 +1,21 @@
-FROM maven:3-openjdk-17 as build-image
+FROM maven:3-openjdk-17-slim as build-image
 
-WORKDIR /to-build-app
-
-COPY . .
-
-RUN mvn -DskipTests=true clean install
-RUN mvn -DskipTests=true clean package
-
-
-FROM eclipse-temurin:17-jre-alpine
+LABEL authors="maires"
 
 WORKDIR /app
 
-COPY --from=build-image /to-build-app/target/*jar /app/app.jar
+COPY pom.xml pom.xml
+
+RUN mvn dependency:go-offline
+
+COPY . .
+
+RUN mvn package spring-boot:repackage -DskipTests
+
+
+FROM eclipse-temurin:17-jre-jammy
+
+COPY --from=build-image /app/target/*.jar /app/app.jar
 
 EXPOSE 8080
 
