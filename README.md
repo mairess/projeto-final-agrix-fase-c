@@ -35,13 +35,13 @@ docker compose up database -d --build
 mvn spring-boot:run
 ```
 
-4. Veja as rotas disponíveis em:
+5. Veja as rotas disponíveis em:
 
 ```BASH
 http://localhost:8080/swagger-ui/index.html
 ```
 
-5. Rode o teste:
+6. Rode o teste:
 
 ```BASH
 mvn test
