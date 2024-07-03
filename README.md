@@ -17,13 +17,19 @@ conta com a segurança do spring-security.
 git clone git@github.com:mairess/projeto-final-agrix-fase-c.git
 ```
 
-2. Rode o banco de dados:
+2. Instale as dependências:
+
+```BASH
+mvn install -DskipTests
+```
+
+3. Inicie o banco de dados:
 
 ```BASH
 docker compose up database -d --build 
 ```
 
-3. Rode a API:
+4. Rode a API:
 
 ```BASH
 mvn spring-boot:run
@@ -51,7 +57,7 @@ mvn test
 git clone git@github.com:mairess/projeto-final-agrix-fase-c.git
 ```
 
-2. Rode o banco de dados:
+2. Inicie a API e o banco de dados:
 
 ```BASH
 docker compose up -d --build 
